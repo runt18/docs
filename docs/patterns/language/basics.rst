@@ -21,15 +21,15 @@ This code translates to the following AST:
 
     node_type: assign
     targets:
-      - ctx:
-          node_type: store
+      - node_type: name
         id: a
-        node_type: name
+        ctx:
+          node_type: store
     value:
+      node_type: name
+      id: b
       ctx:
         node_type: load
-      id: b
-      node_type: name
 
 Note that we're representing the AST as a `YAML <http://en.wikipedia.org/wiki/yaml>`_ document, which
 provides good readability.
@@ -86,10 +86,4 @@ References
 Often when looking for certain code patterns, we want to store a part of a matched tree and reuse it
 somewhere else in our pattern. This is akin to using a parens operator in Regex, like
 `/(foo) is \1/', which will match `foo is foo`. In `Cody`, the operators we use for this are called
-`$store<store>` and `$ref<ref>`, and they work as follows:
-
-.. code-block:: yaml
-
-  node_type: for
-  target :
-    $store :
+`$store<store>` and `$ref<ref>`. They will be explained in the next section.
