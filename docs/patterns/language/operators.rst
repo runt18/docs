@@ -22,7 +22,8 @@ Basics
 For advanced pattern matching, you can make use of special operators in your query. 
 These always start with a dollar (**$**) sign to distinguish them from normal query field. 
 The value you pass to the operator should again be a valid pattern dict, or for some operators, 
-a dictionary containing arguments. An example: The pattern
+a dictionary containing arguments. On the same level as the operator, additional arguments might be specified.
+An example: The pattern
 
 .. code-block:: yaml
 
@@ -30,11 +31,12 @@ a dictionary containing arguments. An example: The pattern
       node_type: functiondef
     name : my_function
 
-will store a node with `node_type = functiondef` in the variable `my_function`.
+will call the `$store<store>` operator with the the sub-dictionary ``node_type: functiondef`` in the variable `my_function`.
+The $store operator will store a node with `node_type = functiondef` in the variable `my_function`.
 
 Some operators do not require a pattern dict and will instead accept arguments. 
 These **argument-only** are marked in the list below. An example is the `ref` operator,
-which you can invoke like this:
+which you can invoke like this:``node_type: functiondef``
 
 .. code-block:: yaml
 
@@ -63,13 +65,69 @@ there will be used in the `bar` branch below.
 Storing and Retrieving Sub-Patterns
 ===================================
 
-Often you want to store a part of a tree and reuse it somewhere else in your query. The `$store`
-operator allows you this. It accepts as a value
+Often you want to store a part of a tree and reuse it somewhere else in your query.
+Let us start with the following example:
+
+.. code-block:: python
+
+  my_variable = my_variable
+
+Obviously, this assignment is pointless. Hence we want to find all such assignments
+in our code base. Therefore, we first take a look at the corresponding AST:
+
+.. code-block:: yaml
+
+  node_type: assign
+  targets:
+    - node_type: name
+      id: my_variable
+      ctx:
+        node_type: store
+  value:
+    node_type: name
+    id: my_variable
+    ctx:
+      node_type: load
+
+The pattern which is able to match these assignments is:
+
+.. code-block:: yaml
+
+  node_type: assign
+  $ : {match_first : targets}
+  targets:
+    - node_type: name
+      id:
+        $store_as: varname
+  value:
+    node_type: name
+    id:
+      $ref:
+        name: varname
+
+It is interpreted in the following manner:
+
+1. Search for all AST nodes with `node_type = assign`
+2. Have a look at the `targets` child: check that its `node_type` is `name` and then store its `id` in the variable called ``varname``.
+3. Have a look at the `value` child: make sure that its `node_type` is `name` and that its `id` matches the previously stored variable name.
+
+$store_as
+------
+
+Stores the subtree in a variable. The stored content can be accessed again, by using the $ref operator.
+
+.. code-block:: yaml
+
+  node_type: name
+  id:
+    $store_as: variable_name
 
 $store
 ------
 
-Stores a matched subtree in a variable
+This operator is quite similar to $store_as, but it additionally checks if the stored subtree matches a given expression.
+
+The pattern
 
 .. code-block:: yaml
 
@@ -77,15 +135,26 @@ Stores a matched subtree in a variable
     node_type: functiondef
   name: my_function
 
-$ref
-----
-
-Get a reference to a stored value.
+is just an abbreviation for
 
 .. code-block:: yaml
 
-  $ref:
-    name: my_function
+  $and:
+    - node_type: functiondef
+    - $store_as: my_function
+
+
+$ref
+----
+
+Retrieves the stored value from a variable.
+
+.. code-block:: yaml
+
+  node_type: name
+  id:
+    $ref:
+      name: stored_function_name
 
 .. _boolean:
 
@@ -139,6 +208,9 @@ Example:
     - node_type: classdef
 
 Matches a function definition followed by a class definition.
+
+In most situations there is no need to use this operator explicitely,
+since lists are implicitely matched using the `$concat` operator.
 
 $repeat
 -------
@@ -209,15 +281,20 @@ Provides a reference to the parent element of the current element.
 $contains
 ---------
 
-Matches a node that contains a given regular expression somewhere in its children.
+Matches a node that contains a given tree somewhere in its children.
 
 $anywhere
 ---------
 
 Matches a given expression anywhere in the tree. This operator will recursively descend into the
-current node tree and try to produce a match with the given operator.
+current node tree and try to produce a match with the given expression.
 
 .. warning:: This operator can be expensive when matching large trees, use with care.
+
+Parameters:
+
+* **limit**: Limits the depth up to which the tree will be searched
+* **exclude**: All nodes which match the provided expression will not be inspected during the search
 
 .. _regex:
 
@@ -229,6 +306,15 @@ $regex
 
 Matches the value of a given field against a regular expression.
 
+Parameters:
+
+* **modifiers**: a string containing modifiers for the regular expresion.
+
+Supported modifiers:
+
+* ``i``: match the regular expression case-insensitive
+* ``m``: enables multiline matching
+
 Example
 _______
 
@@ -237,3 +323,4 @@ _______
   node_type: functiondef
   name:
     $regex: foo|bar
+    modifiers: i

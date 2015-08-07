@@ -14,8 +14,8 @@ Welcome to QuantifiedCode.
     :maxdepth: 2
 
     basics/index
+    configuration/index
     faq/index
     patterns/index
-    api/v1/index
-    Support <http://quantifiedcode.com/contact>
+    Support <https://quantifiedcode.com/contact>
 

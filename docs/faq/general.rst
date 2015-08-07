@@ -5,9 +5,11 @@ General
 .. toctree::
     :maxdepth: 1
 
+    general/free.rst
+    general/free_opensource.rst
     general/trial.rst
-    general/trial_start.rst
-    general/trial_difference.rst
-    general/trial_restrictions.rst
-    general/trial_creditcard.rst
-    general/account_team.rst
+    general/security.rst
+    general/email_login.rst
+    general/team.rst
+    general/opensource.rst
+    general/enterprise.rst

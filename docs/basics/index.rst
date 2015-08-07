@@ -2,13 +2,12 @@
 Basics
 ======
 
-On the following page, you'll get answers to your questions. Anything missing? Please `Contact us. <http://quantifiedcode.com/contact>`_. We are here to help. Also, feel free to contribute to this documentation
+Welcome to QuantifiedCode, an automated code review tool for Python!
 
 .. toctree::
     :maxdepth: 1
 
-    in_a_nutshell
+    about
     requirements
-    login_signup
+    get_started
     ssh_key_setup
-    open_source_usage
