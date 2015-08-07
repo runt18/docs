@@ -24,6 +24,6 @@ Get started
 
     To analyze your repo automatically with each commit, add a :ref:`commit hook <config_commit_hooks>` to your git server/service.
 
-**4. Publish your code quality badge
+**5. Publish your code quality badge**
 
     Finally, don't forget to add your project's code quality :ref:`badge <config_code_quality_badge>` to your README.

@@ -7,6 +7,7 @@ Commit hooks
 You can add commit hooks to your git server/service, to trigger the anaylsis of your code on QuantifiedCode.
 
 Here's how:
+
 - Go to “Your projects” and click on the settings symbol
 - In the sidebar, click on “Hooks” and copy the hook URL.
 - Now, go to GitHub, BitBucket (or your local git server) and enable the hook

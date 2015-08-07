@@ -10,7 +10,8 @@ The syntax of **.checkignore** files is identical with the syntax of `.gitignore
 
 The following example excludes all files and folders that are in the `test` folder. In addition, the file `demo.py` is not analyzed.
 
-.. code-block::python
+.. code-block:: text
+
   # .checkignore example
   # Exclude all test folders
   **/test
