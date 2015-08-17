@@ -298,6 +298,19 @@ Parameters:
 
 .. _regex:
 
+$length
+-------
+
+Matches a node with a defined number of elements in one of its parameters.  
+For example if you would like to match an if statement with exactly one element in its body, you can use:
+
+.. code-block:: yaml
+
+  node_type: if
+  body:
+    $length: 1
+
+
 Regex Matching
 ==============
 
