@@ -178,8 +178,8 @@ $and
 .. code-block:: yaml
 
   $and:
-    -  node_type: {ref: my_ref_1}
-    -  id: {ref: my_ref_2}
+    -  node_type: {$ref: my_ref_1}
+    -  id: {$ref: my_ref_2}
 
 $not
 ----
