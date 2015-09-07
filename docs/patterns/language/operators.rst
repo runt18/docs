@@ -191,6 +191,32 @@ $not
 
 .. _repetition:
 
+One important thing to note at this point is the difference between:
+
+.. code-block:: yaml
+
+  $not:
+    node_type: functiondef
+    name: foo
+
+.. _repetition:
+
+and:
+
+.. code-block:: yaml
+
+  node_type: functiondef
+  name:
+    $not: foo
+
+.. _repetition: .
+
+The first pattern will match if the code contains a function definition with
+a name other than ``foo`` but will also match if no node type named ``functiondef`` is present at all.
+The latter will only match if a function definition is found with a name other than ``foo``.
+
+
+
 Repetition and Concatenation
 ============================
 
