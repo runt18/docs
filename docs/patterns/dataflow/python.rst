@@ -119,6 +119,30 @@ will yield a variable in the form
   ast: [AST node]
   fully_qualified_name: django.http.request.HttpResponse
 
+Fully qualified names will be generated for all modules, classes, functions and variables that
+are assigned to a name in a given scope. 
+
+.. warning::
+    
+    The fully qualified name works on the level of **variables** and not **names**, hence assigning
+    a variable with an existing fully qualified name to something else (e.g. a name in a local
+    scope), will NOT change this name. Example:
+
+    .. code-block:: python
+
+        #module name: "foo"
+
+        #HttpRequest will have fully_qualified_name = "django.http.HttpRequest"
+        from django.http import HttpRequest
+
+        #this will have fully_qualified_name = "foo.a"
+        a = "test"
+
+        #this will have fully_qualified_name = "django.http.HttpRequest"
+        my_http_request = HttpRequest
+
+        #this will have fully_qualified_name = "foo.my_http_request"
+        my_http_request = "foo"
 
 Function Definitions
 ====================
