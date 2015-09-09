@@ -26,7 +26,7 @@ Union Types
 -----------
 
 Often it is not possible to unambiguously deduce the exact value or type of a variable 
-at a given point in the syntax tree. In this case, the AEE will return a so-called **Union type**,
+at a given point in the syntax tree. In this case, the Abstract Execution Engine (AEE) will return a so-called **Union type**,
 which will contain a list of possible variable values/types for the given element. For example,
 the code block
 
