@@ -160,6 +160,17 @@ Retrieves the stored value from a variable.
     $ref:
       name: stored_function_name
 
+
+In case one would like to retrieve a specific value from the entire stored dictionary of nodes it is possible to do the following.
+For example a node of the node type: `name` has been stored as: `some_name` but we only need to reference the value also called branch: `id`.
+
+.. code-block:: yaml
+
+  node_type: functiondef
+  name:
+    $ref:
+      name: some_name.id
+
 .. _boolean:
 
 Boolean Operators
