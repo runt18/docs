@@ -110,9 +110,9 @@ The first part is easy:
 The second part is quite easy as well: You just have to embed a placeholder in your occurrence description.
 The syntax used for this is the Python ``printf`` syntax. This syntax provides quite a lot of possibilities but
 most of the time you will only need string placeholders. In order to get the nifty error message for our
-badly chosen variable name, we can use the template
+badly chosen variable name, we can use the occurrence description:
 
-.. code-block: plain
+.. code-block:: plain
 
   The variable name '%(occurrence.data.varname)s' does not obey the Python naming conventions.
 
@@ -120,3 +120,8 @@ The part enclosed by the brackets specifies the variable which should be put in 
 variables are available:
 
 * ``occurrence.data.<var_name>`` always contains the content which you stored in the corresponding Cody variable.
+
+
+If multiple placeholders are defined in your occurrence description, it should be noted that any of them
+will only be displayed if all of the variables in the description are correctly stored within the pattern.
+If at least one of them can not be stored none will be visible.
