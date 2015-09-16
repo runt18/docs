@@ -197,7 +197,7 @@ $and
 Succeed when all the operands are matched. This operator is useful in
 combination with other operators inside, like in this example:
 
-.. code-bloc:: yaml
+.. code-block:: yaml
 
   node_type: functiondef
   body:
