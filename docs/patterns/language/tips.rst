@@ -70,6 +70,8 @@ corresponding `name` node in the magic variable ``result``:
           $regex: '[a-z_][a-z0-9_]*$|(([A-Z_][A-Z0-9_]*)|(__.*__))$'
     name: result
 
+Notice that `name` is at the same level than `$store` and its value is `result`.
+
 Pretty occurrence descriptions
 ==============================
 
