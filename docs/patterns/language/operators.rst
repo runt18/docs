@@ -113,7 +113,7 @@ It is interpreted in the following manner:
 3. Have a look at the `value` child: make sure that its `node_type` is `name` and that its `id` matches the previously stored variable name.
 
 $store_as
---------
+---------
 
 Stores the subtree, which is defined at this point of the source code in a variable. The stored content can be accessed again, by using the $ref operator.
 
@@ -179,6 +179,8 @@ Boolean Operators
 $or
 ---
 
+Succeeds if matches any of the following nodes:
+
 .. code-block:: yaml
 
   $or:
@@ -192,9 +194,35 @@ $and
 
 .. code-block:: yaml
 
-  $and:
-    -  node_type: {$ref: my_ref_1}
-    -  id: {$ref: my_ref_2}
+Succeed when all the operands are matched. This operator is useful in
+combination with other operators inside, like in this example:
+
+.. code-bloc:: yaml
+
+  node_type: functiondef
+  body:
+    - $and:
+      - $length: 1
+      - node_type: pass
+
+This pattern matches any functions within a single statement and this statement
+is `pass`. like:
+
+.. code-block:: yaml
+
+  def any_function():
+      pass
+
+
+but will not match this one:
+
+.. code-block:: yaml
+
+  def any_other_function():
+     pass
+     return 1
+
+Because the function has more than one statement.
 
 $not
 ----
