@@ -192,8 +192,6 @@ Succeeds if matches any of the following nodes:
 $and
 ----
 
-.. code-block:: yaml
-
 Succeed when all the operands are matched. This operator is useful in
 combination with other operators inside, like in this example:
 
