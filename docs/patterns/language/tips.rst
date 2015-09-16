@@ -41,8 +41,9 @@ you could use the more dense notation
 Setting the exact location where your pattern matches
 =====================================================
 
-Let us now assume, you are trying to match variable names which do not follow the Python naming conventions.
-The following Cody pattern finds all assignments to such variables
+Let us now assume, you are trying to match variable names which do not follow
+the Python naming conventions. The following Cody pattern finds all assignments
+to such variables
 
 .. code-block:: yaml
 
@@ -55,8 +56,8 @@ The following Cody pattern finds all assignments to such variables
 
 This pattern correctly finds all assignments to "non-Pythonic" variable names.
 But it always marks the whole assignment as errorneous. We can do better by only
-marking the `name` node as deficient. We can do this by storing the corresponding
-`name` node in the magic variable ``result``:
+marking the `name` node as deficient. We can do this by storing the
+corresponding `name` node in the magic variable ``result``:
 
 .. code-block:: yaml
 
