@@ -1,9 +1,9 @@
-==============
+===============
 Tips and tricks
-==============
+===============
 
 Document your queries
-====================
+=====================
 
 YAML provides the possibility to include comments. So you should use this opportunity in order
 to make your queries more readable.

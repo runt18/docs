@@ -20,9 +20,9 @@ In the following a query can be understood as a code check for a certain pattern
 Basics
 ======
 
-For advanced pattern matching, you can make use of special operators in your query. 
-These always start with a dollar (**$**) sign to distinguish them from normal Cody fields. 
-The value you pass to the operator should again be a valid pattern dictionary, or for some operators, 
+For advanced pattern matching, you can make use of special operators in your query.
+These always start with a dollar (**$**) sign to distinguish them from normal Cody fields.
+The value you pass to the operator should again be a valid pattern dictionary, or for some operators,
 a list containing arguments or a simple string. On the same level as the operator, additional arguments might be specified.
 An example: The pattern
 
@@ -35,7 +35,7 @@ An example: The pattern
 will call the ``$store`` operator with the dictionary ``node_type: functiondef`` in the variable ``my_function``.
 The ``$store`` operator will store a node with ``node_type = functiondef`` in the variable ``my_function``.
 
-Some operators do not require a pattern dictionary and will instead accept arguments. 
+Some operators do not require a pattern dictionary and will instead accept arguments.
 These **argument-only** are marked in the list below. An example is the ``$ref`` operator,
 which you can invoke like this:
 
@@ -113,7 +113,7 @@ It is interpreted in the following manner:
 3. Have a look at the `value` child: make sure that its `node_type` is `name` and that its `id` matches the previously stored variable name.
 
 $store_as
-------
+--------
 
 Stores the subtree, which is defined at this point of the source code in a variable. The stored content can be accessed again, by using the $ref operator.
 
@@ -124,7 +124,7 @@ Stores the subtree, which is defined at this point of the source code in a varia
     $store_as: variable_name
 
 It should be noted that the following ``$store`` operator is usually more reliable and less
-prone to errors than ``$store_as``. 
+prone to errors than ``$store_as``.
 
 $store
 ------
@@ -304,7 +304,7 @@ exists somewhere in our source code:
 
   node_type: functiondef
   decorator_list: {$empty: {}}
-  
+
 .. _structure:
 
 Position within the Tree
@@ -358,7 +358,7 @@ $parent
 
 Provides a reference to the parent element of the current element.
 
-.. warning:: This works only for nodes whose parent node has been actively traversed during the 
+.. warning:: This works only for nodes whose parent node has been actively traversed during the
              matching operation, and will thus NOT work for the nodes that are in the initial
              list of nodes passed to the regular expression.
 
@@ -367,7 +367,7 @@ Provides a reference to the parent element of the current element.
 $contains
 ---------
 
-Produces a match if a certain list contains a given pattern dictionary as element. 
+Produces a match if a certain list contains a given pattern dictionary as element.
 
 For example we could find out whether someone defined a function inside an if condition:
 
@@ -408,7 +408,7 @@ the node matches our definition. This could take quite some time.
 $length
 -------
 
-Matches a node with a defined number of elements in one of its parameters.  
+Matches a node with a defined number of elements in one of its parameters.
 
 For example if you would like to match an if statement with exactly one element in its body, you can use:
 
@@ -469,5 +469,5 @@ Another example:
   name:
     $regex: foo|bar
     modifiers: i
-    
+
 This will match any `node_type`: `name` with an `id` which is either `foo` or `bar`.
