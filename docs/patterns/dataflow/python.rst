@@ -5,21 +5,34 @@ Python
 This document gives an overview of the data-flow annotations that we add to the Python
 abstract syntax tree (AST) using our abstract interpretation engine. The different annotations
 are grouped by node type whenever possible and contain a short description, an estimation of their
-fidelity/applicabilit and one or more usage examples.
+fidelity/applicabilit and one or more usage examples. Annotations can be accessed through the
+:code:`_flow` branch. If no such branch exists in the AST the node does not have any annotations.
 
 Annotation Nodes
 ================
 
 Annotation nodes will always have a `type` attribute that specifies the type of the given attribute,
-as well as a number of additional attributes.
+as well as a number of additional attributes. The most important types are listed below.
 
 Variable Types
 --------------
 
-* `dict`: A Python dictionary
-* `list`: A Python list
-* `tuple`: A Python tuple
-* `set`: A Python set
+* `num`: A integer or float
+* `str`: A string
+* `dict`: A dictionary
+* `list`: A list
+* `tuple`: A tuple
+* `set`: A set
+* `module`: A module
+* `call`: A call of a function
+* `generator`: A generator function
+* `function`: An function definition
+* `class`: An class definition
+* `binop`: A binary operation
+* `boolop`: A boolean operation
+* `ambiguous`: Will be set if there are multiple possibilities for the type, e.g. when assigning a variable both in an if and else branch (see below for more details).
+* `unknown`: Will be set if the type can not be specified.
+* `undefined`: Will be set if, for example a function call or a variable is not defined in the current scope.
 
 
 Union Types
@@ -35,24 +48,26 @@ the code block
   if condition: #branch ID: af4a..
     a = 4 #this is an int
   else: #branch ID: 75af..
-    a = 4.1 #this is a float
+    a = "four" #this is a string
 
   print a
 
-would generate the following annotation for the `a` name in the last line:
+would generate in part the following annotation for the `a` name in the last line:
 
 .. code-block:: yaml
 
-  type: union
+  type: ambiguous
   values:
-    - branch: af4a..
-      type: int
+    - af4a.. # the first branch
+      branch: af4a..
+      type: num
       value: 4
-    - branch: 75af..
-      type: float
-      value: 4.1
+    - 75af.. # the second branch
+      branch: 75af..
+      type: str
+      value: four
 
-Here, the `branch` parameter in the `values` attribute of the union type tells you which code branch
+Here, the `branch` parameter of the shown annotation tells you which code branch
 is responsible for the generation of the given value.
 
 .. note:: Branches can get *combined* when there are multiple possible code paths that can be taken.
@@ -89,8 +104,8 @@ Annotations
 -----------
 
 For names with a `load` context, the AIE tries to determine the current value of the variable at
-the given point in the AST. If this is not possible, it will return a :json:`type: undefined`
-annotation. If more than one value is possible, a :json:`type: union` will be returned.
+the given point in the AST. If this is not possible, it will return a :code:`type: undefined`
+annotation. If more than one value is possible, a :code:`type: ambiguous` will be returned.
 
 Imports
 =======
@@ -109,18 +124,26 @@ code block
 
 .. code-block:: python
 
-  from django.http import HttpRequest
+  from django.http import HttpRequest as HR
 
-will yield a variable in the form
+  my_http_request = HR
+
+will yield a variable which is named :code:`fully_qualified_name` and is placed in the :code:`_flow`
+branch of the :code:`HR` object. The AST of the last line in this code snippet will look in part like the following.
 
 .. code-block:: yaml
 
-  type: class
-  ast: [AST node]
-  fully_qualified_name: django.http.request.HttpResponse
+    node_type: assign
+    _flow:
+      target:
+        fully_qualified_name: django.http.HttpRequest
+
 
 Fully qualified names will be generated for all modules, classes, functions and variables that
 are assigned to a name in a given scope. 
+When writing patterns which use the fully qualified name it is usually the fastest to find the
+specific branch name which holds this variable by defining a minimal working example and looking in
+the generated AST for the correct branch since these can change depending on the current node.
 
 .. warning::
     
