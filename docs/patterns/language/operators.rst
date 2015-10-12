@@ -393,17 +393,19 @@ Parameters:
 
 This operator is tempting to use because one does not have to worry about the exact location of
 the pattern that we want to find.
-For example: It would be easy to find out if the ``global`` statement has been used anywhere in our
-source code.
+For example: It would be easy to find out if the ``global`` statement has been used somewhere within an certain function.
 
 .. code-block:: yaml
 
-  $anywhere:
-    node_type: global
+  node_type: functiondef
+  name: some_function
+  body:
+    $anywhere:
+      node_type: global
 
 However a pattern like this should be avoided whenever possible because the matching algorithm would
-have to step through every single node of the entire source code and check for each step whether
-the node matches our definition. This could take quite some time.
+have to step through every single node of the entire function body and check for each step whether
+the node matches our definition. For large functions this would take quite some time.
 
 $length
 -------
@@ -427,6 +429,10 @@ $regex
 ------
 
 Matches the value of a given field against a regular expression.
+
+To escape some character within the regex, one needs to use two consecutive backslashes instead of just one.
+Since yaml uses the same character for escaping like the regular expression the first one will be caught by
+yaml. Only using one backslash will result in a yaml syntax error.
 
 Parameters:
 

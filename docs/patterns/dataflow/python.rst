@@ -100,6 +100,10 @@ would tell us that we should look up the variable with the id `foo`, whereas the
 
 would tell us that we should store something into the variable with the id `foo`.
 
+One thing to note here is that the reserved Python names: `True` and `False` will be stored as a
+node type: name but with an id which is encapsulated like `'True'` or `'False'`.
+This is necessary because yaml uses these keywords as well.
+
 Annotations
 -----------
 
