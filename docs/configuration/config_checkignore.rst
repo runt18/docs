@@ -4,17 +4,20 @@
 Exclude files/folders from analysis
 ===================================
 
-Just add a file named **.checkignore** to the root folder of your repo.
+To exclude files and/or folders from the analysis, add a **.checkignore** file to the root folder of your repository.
 
-The syntax of **.checkignore** files is identical with the syntax of `.gitignore <http://git-scm.com/docs/gitignore>`_ files. Files and folders that are mentioned in the **.checkignore** will be ignored, once your project is re-analyzed.
+Files and folders that are mentioned in the **.checkignore** file will be ignored, once your project is re-analyzed.
 
-The following example excludes all files and folders that are in the `test` folder. In addition, the file `demo.py` is not analyzed.
+Follow the following examples, to exclude files and/or folders:
 
 .. code-block:: text
 
   # .checkignore example
-  # Exclude test folder
+  # Exclude entire folders
   test/*
+  unittest/*
+  my/subfolder/*
+  
   # Exclude demo.py files
   demo.py
   test/demo.py
