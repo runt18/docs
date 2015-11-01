@@ -13,8 +13,9 @@ The following example excludes all files and folders that are in the `test` fold
 .. code-block:: text
 
   # .checkignore example
-  # Exclude all test folders
-  **/test
+  # Exclude test folder
+  test/*
   # Exclude demo.py files
   demo.py
+  test/demo.py
 
