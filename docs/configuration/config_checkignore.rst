@@ -4,7 +4,7 @@
 Exclude files/folders from analysis
 ===================================
 
-To exclude files and/or folders from the analysis, add a **.checkignore** file to the root folder of your repository.
+To exclude files and/or folders from the analysis, add a **.checkignore** file to the root folder of your master branch.
 
 Files and folders that are mentioned in the **.checkignore** file will be ignored, once your project is re-analyzed.
 
