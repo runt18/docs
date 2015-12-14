@@ -4,6 +4,8 @@
 Commit hooks
 ============
 
+.. note:: If you sign up with GitHub, your commit hooks will be set automatically.
+
 You can add commit hooks to your git server/service, to trigger the anaylsis of your code on QuantifiedCode.
 
 Here's how:

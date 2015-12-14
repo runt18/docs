@@ -8,4 +8,7 @@ On the following page, you'll get answers to your questions. Anything missing? P
     :maxdepth: 2
 
     general
-    technical
+    setup
+    account
+    projects
+    analysis

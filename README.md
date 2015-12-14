@@ -2,7 +2,7 @@
 
 #Description
 
-This is the documenation of [QuantifiedCode](http://alpha.quantifiedcode.com). Feel free to suggest changes, make improvements or add content to it.
+This is the documenation of [QuantifiedCode](https://www.quantifiedcode.com). Feel free to suggest changes, make improvements or add content to it.
 
 #Licence
 
