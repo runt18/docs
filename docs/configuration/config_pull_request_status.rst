@@ -6,7 +6,7 @@ Configure your pull request status
 
 .. note:: This feature is only available for GitHub users.
 
-Once you sign up, QuantifiedCode automaticaly installs a pull request hook on GitHub (assuming you've granted us all necessary access rights). Going forward, QuantifiedCode's analysis will be triggered whenever a pull request is opened (also via forks).
+Once you sign up, QuantifiedCode automatically installs a pull request hook on GitHub (assuming you've granted us all necessary access rights). Going forward, QuantifiedCode's analysis will be triggered whenever a pull request is opened (also via forks).
 
 To make sure your pull request *fails* or *passes* for issues that you and your team consider important, follow one of the following two strategies:
 

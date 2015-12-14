@@ -1,15 +1,15 @@
-=========
-Technical
-=========
+=====
+Setup
+=====
 
 .. toctree::
     :maxdepth: 1
 
-    technical/requirements
-    technical/repos_private
-    technical/repos_public
-    technical/cvs
-    technical/bitbucket
-    technical/ssh_github
-    technical/ssh_bitbucket
-    technical/ssh_gitserver
+    setup/requirements
+    setup/repos_private
+    setup/repos_public
+    setup/cvs
+    setup/bitbucket
+    setup/ssh_github
+    setup/ssh_bitbucket
+    setup/ssh_gitserver

@@ -5,6 +5,6 @@ Projects
 .. toctree::
     :maxdepth: 1
 
-    account/project_contributors.rst
-    account/project_reanalyze.rst
-    account/project_delete.rst
+    projects/project_contributors.rst
+    projects/project_reanalyze.rst
+    projects/project_delete.rst

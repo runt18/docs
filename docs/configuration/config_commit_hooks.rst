@@ -4,7 +4,7 @@
 Commit hooks
 ============
 
-.. note:: If you sign up with GitHub, your commit hooks will be set automatically.
+.. note:: If you sign up with GitHub, commit hooks will installed automatically.
 
 You can add commit hooks to your git server/service, to trigger the anaylsis of your code on QuantifiedCode.
 
