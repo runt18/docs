@@ -1,8 +1,8 @@
 .. _config_pull_request_status:
 
-=============================
-Configure pull request status
-=============================
+===================
+Pull request status
+===================
 
 .. note:: This feature is only available for GitHub users.
 

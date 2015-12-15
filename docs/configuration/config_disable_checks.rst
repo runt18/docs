@@ -1,8 +1,8 @@
 .. _config_disable_checks:
 
-===================
-Disable code checks
-===================
+===========
+Code checks
+===========
 
 If some of our `default code checks <https://www.quantifiedcode.com/app/patterns?query=generic>`_ don't fit your needs, go to the settings of your project and click on "Code Patterns".
 

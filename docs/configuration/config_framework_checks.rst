@@ -1,8 +1,8 @@
 .. _config_framework_checks:
 
-==============================
-Framework specific code checks
-==============================
+===============================
+Framework checks (e.g., Django)
+===============================
 
 Go to `“Your projects” <https://www.quantifiedcode.com/app/projects>`_ and click on the settings symbol. In the sidebar, click on “Basics” and tag your project (e.g,. with "django", "django-1.8").
 
