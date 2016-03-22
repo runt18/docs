@@ -278,8 +278,8 @@ def role_github_badge(name, rawtext, text, lineno, inliner,
     if content is None:
         content = []
     html = """
-     <a class="github_ribbon" href="https://github.com/%s"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
-     """ % text
+     <a class="github_ribbon" href="https://github.com/{0!s}"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+     """.format(text)
     return [raw_node(text = html,format = 'html')],[]
 
 from docutils.nodes import raw as raw_node
@@ -289,7 +289,7 @@ def role_font_awesome(name, rawtext, text, lineno, inliner,
         options = {}
     if content is None:
         content = []
-    html = "<i class=\"fa fa-%s\"></i>" % text
+    html = "<i class=\"fa fa-{0!s}\"></i>".format(text)
     return [raw_node(text = html,format = 'html')],[]
 
 def setup(app):
